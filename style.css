@@ -1,0 +1,294 @@
+/* ================= VARIÁVEIS E CONFIGURAÇÕES GERAIS ================= */
+:root {
+    --primary-color: #2e7d32;    /* Verde institucional */
+    --accent-color: #4caf50;     /* Verde destaque */
+    --whatsapp-color: #25D366;   /* Cor oficial do WhatsApp */
+    --text-dark: #2c3e50;
+    --text-light: #f8f9fa;
+    --bg-light: #f4f7f6;
+    --white: #ffffff;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* ================= HEADER (MODERNIZADO E ALINHADO) ================= */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 12px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Distribui: Logo | Menu | WhatsApp */
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    z-index: 1000;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+/* Menu centralizado */
+.menu {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex: 1; /* Ocupa o espaço central para empurrar os outros itens */
+}
+
+.menu a {
+    font-family: 'Pathway Gothic One', sans-serif;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 1.3rem;
+    position: relative;
+    transition: var(--transition);
+}
+
+.menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -3px;
+    left: 0;
+    background-color: var(--primary-color);
+    transition: var(--transition);
+}
+
+.menu a:hover {
+    color: var(--primary-color);
+}
+
+.menu a:hover::after {
+    width: 100%;
+}
+
+/* Link WhatsApp no canto superior direito */
+#link {
+    text-decoration: none;
+    background-color: var(--whatsapp-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+#link h3 {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: 1rem;
+    margin: 0;
+    line-height: 1.1;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#link:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* ================= HERO SECTION (COM EFEITO PARALLAX) ================= */
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), 
+                url("images/bandeirabrasil.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.title h1 {
+    font-family: 'Pathway Gothic One', sans-serif;
+    font-size: clamp(3rem, 10vw, 5rem);
+    color: var(--white);
+    text-shadow: 2px 4px 15px rgba(0,0,0,0.4);
+    margin-bottom: 15px;
+}
+
+.frase-kant {
+    font-style: italic;
+    font-size: clamp(1.2rem, 3vw, 1.8rem);
+    color: rgba(255, 255, 255, 0.95);
+    max-width: 750px;
+    border-left: 4px solid var(--accent-color);
+    padding-left: 25px;
+    line-height: 1.4;
+}
+
+/* ================= SEÇÕES E ANIMAÇÕES DE SCROLL ================= */
+.secao {
+    padding: 100px 10% 80px;
+    background: var(--white);
+    /* Classes para o JavaScript de animação */
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+/* Quando o JS detectar o scroll, adiciona esta classe */
+.secao.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.secao:nth-child(even) {
+    background: var(--bg-light);
+}
+
+.secao h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    font-family: 'Pathway Gothic One', sans-serif;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.line {
+    background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+    width: 200px;
+    height: 4px;
+    margin: 0 auto 40px;
+    border-radius: 10px;
+}
+
+.text-info-out {
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: #444;
+    text-align: justify;
+    max-width: 900px;
+    margin: 0 auto 50px;
+}
+
+/* ================= CARDS DE COMUNIDADES ================= */
+.container-comunidades {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    width: 100%;
+}
+
+.box-comunidade {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.03);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.box-comunidade:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.box-comunidade-top {
+    background: var(--primary-color);
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo-comunidade {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,255,255,0.3);
+}
+
+.text-info-in {
+    font-size: 1.6rem;
+    color: var(--white);
+    font-family: 'Pathway Gothic One', sans-serif;
+}
+
+.text-info-in-inside {
+    font-size: 1.05rem;
+    padding: 25px;
+    color: #555;
+    flex-grow: 1;
+}
+
+.box-comunidade-listas-efeito {
+    background: #f1f8e9; /* Verde bem clarinho */
+    margin: 0 20px 20px;
+    border-radius: 15px;
+    border-left: 6px solid var(--accent-color);
+}
+
+/* ================= RESPONSIVIDADE ================= */
+@media (max-width: 992px) {
+    header { padding: 12px 3%; }
+    .menu { gap: 15px; }
+    .menu a { font-size: 1.1rem; }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+        position: relative; /* Opcional: solta o header no mobile se ocupar muito espaço */
+    }
+
+    .menu {
+        order: 3;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    #link {
+        order: 2;
+        width: 100%;
+    }
+
+    .logo { order: 1; }
+
+    .secao { padding: 70px 20px; }
+}
+
+@media (max-width: 480px) {
+    .title h1 { font-size: 2.5rem; }
+    .frase-kant { font-size: 1.1rem; }
+}
