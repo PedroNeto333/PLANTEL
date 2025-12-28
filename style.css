@@ -292,48 +292,503 @@ header {
     transform: scale(1.1);
 }
 
-/* ================= RESPONSIVIDADE ================= */
-@media (max-width: 992px) {
-    header { padding: 12px 3%; }
-    .menu { gap: 15px; }
-    .menu a { font-size: 1.1rem; }
+/* se n der certo  */
+.navbar {
+  display: flex;
+  background-color: transparent;
+  position: fixed;
+  top: 50%;
+  left: 28px; /* Reduzido de 80px para 20px para ficar mais no canto */
+  transform: translateY(-50%);
+  z-index: 99;
+  opacity: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+.navbar.scrolled {
+  opacity: 0.8;
+  /* Torna a navbar ligeiramente transparente ao rolar */
+  transform: translateY(-40%);
+  /* Desloca a navbar para cima um pouco */
+}
+
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0.75rem;
+  /* Transparência ajustada (o final '5d' ou '80' define a opacidade) */
+  background-color: rgba(238, 242, 245, 0.4); 
+  -webkit-backdrop-filter: blur(10px); /* Suporte para Safari */
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  border-radius: 10px;
+  /* Borda sutil para ajudar no efeito de vidro */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 50px #2e7d3231;
+}
+
+.navbar li+li {
+  margin-top: 0.75rem;
+}
+
+.navbar a {
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 8px;
+  position: relative;
+  transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.navbar a:hover,
+.navbar a:focus,
+.navbar a.active {
+  background-color: #2e7d32;
+  box-shadow: 0px 14px 60px #4caf50;
+}
+
+.navbar a img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.navbar a span {
+  position: absolute;
+  background-color: #2e7d32;
+  color: #ffffff;
+  white-space: nowrap;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  left: calc(100% + 1.5rem);
+  transform-origin: center left;
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.navbar a:hover span,
+.navbar a:focus span,
+.navbar a.active span {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.navbar a span:before {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  background-color: #2e7d32;
+  left: -5px;
+  top: 50%;
+  transform: translateY(-50%) rotate(45deg);
+  border-radius: 3px;
+}
+
+/* ================= BOTTOM NAVIGATION (MOBILE ONLY) ================= */
+.bottom-nav {
+    display: none; /* Escondido por padrão (Desktop) */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1002; /* Acima de tudo */
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-dark);
+    font-size: 10px;
+    font-weight: bold;
+    transition: var(--transition);
+}
+
+.nav-item img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+}
+
+.nav-item:active {
+    transform: scale(0.9);
+    color: var(--primary-color);
+}
+
+/* ================= FOOTER MODERNIZADO ================= */
+.main-footer {
+    background-color: rgba(255, 255, 255, 0.8); /* Transparência */
+    backdrop-filter: blur(10px); /* Blur consistente com o restante */
+    padding: 60px 5% 40px;
+    border-top: 1px solid rgba(46, 125, 50, 0.1);
+    margin-top: 50px;
+}
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    text-align: left;
+}
+
+.footer-logo {
+    width: 60px;
+    margin-bottom: 15px;
+}
+
+.footer-links h4, .footer-contact h4 {
+    font-family: 'Pathway Gothic One', sans-serif;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    display: block;
+    text-decoration: none;
+    color: #666;
+    margin-bottom: 8px;
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding-top: 30px;
+    text-align: center;
+}
+
+.dev-team {
+    font-weight: 600;
+    color: var(--primary-color) !important;
+    font-family: 'Pathway Gothic One', sans-serif !important;
+    font-size: 1.2rem !important;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+/* Definições do Tema Escuro */
+/* Definições do Tema Escuro */
+body.dark-theme {
+    --bg-light: #121212;
+    --white: #1e1e1e;
+    --text-dark: #ffffff;    /* Texto principal agora é branco total */
+    --text-light: #f4f7f6;   /* Invertemos para o fundo */
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Força todos os parágrafos e textos informativos a ficarem brancos no Dark Mode */
+body.dark-theme p,
+body.dark-theme .text-info-out,
+body.dark-theme .text-info-in-inside,
+body.dark-theme h1,
+body.dark-theme .frase-kant {
+    color: var(--text-dark) !important;
+}
+
+/* Ajustes específicos do Footer no Dark Mode */
+body.dark-theme .main-footer {
+    background-color: rgba(18, 18, 18, 0.9); /* Fundo escuro com transparência */
+    border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Garante que os parágrafos e links fiquem brancos */
+body.dark-theme .main-footer p,
+body.dark-theme .footer-links a,
+body.dark-theme .footer-bottom p {
+    color: #ffffff !important;
+}
+
+/* Mantém os títulos e a frase de desenvolvimento em verde */
+body.dark-theme .footer-links h4,
+body.dark-theme .footer-contact h4,
+body.dark-theme .dev-team {
+    color: var(--primary-color) !important;
+}
+
+/* Efeito hover nos links no modo escuro */
+body.dark-theme .footer-links a:hover {
+    color: var(--accent-color) !important;
+}
+
+/* Ajuste para o card de listas (que tem um fundo verde clarinho no Light Mode) */
+body.dark-theme .box-comunidade-listas-efeito {
+    background: rgba(46, 125, 50, 0.1); /* Verde escuro transparente */
+    border-left-color: var(--primary-color);
+}
+
+body.dark-theme .box-comunidade-listas-efeito p {
+    color: #e0e0e0 !important;
+}
+
+/* Container no Header */
+/* Container no Header (definido mais abaixo com ajustes finais) */
+
+/* Ajuste para o Dark Mode Ativo */
+body.dark-theme #dark-mode-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--whatsapp-color);
+    color: var(--whatsapp-color);
+}
+
+/* Ajustes específicos para o Dark Mode */
+body.dark-theme .secao {
+    background-color: #121212;
+    color: var(--text-dark);
+}
+
+body.dark-theme .box-comunidade {
+    background-color: #1e1e1e;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme .navbar ul {
+    background-color: rgba(30, 30, 30, 0.6); /* Glassmorphism escuro */
+}
+
+body.dark-theme header, 
+body.dark-theme .bottom-nav {
+    background: rgba(18, 18, 18, 0.9);
+}
+
+/* Container para alinhar o toggle no header */
+/* Container no Header */
+.dark-mode-container {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+#dark-mode-toggle {
+    background: rgba(255, 255, 255, 0.2); /* Fundo semi-transparente */
+    -webkit-backdrop-filter: blur(8px); /* Efeito de vidro */
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(46, 125, 50, 0.3); /* Borda sutil verde */
+    color: var(--primary-color);
+    width: 42px;
+    height: 42px;
+    border-radius: 12px; /* Quadrado levemente arredondado para combinar com o botão Zap */
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Animação elástica */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+#dark-mode-toggle:hover {
+    transform: scale(1.1) rotate(15deg); /* Leve inclinação ao passar o mouse */
+    background: var(--primary-color);
+    color: white;
+    box-shadow: 0 8px 20px rgba(46, 125, 50, 0.3);
+}
+
+#dark-mode-toggle .icon {
+    font-size: 1.3rem;
+    line-height: 1;
+}
+
+/* Ajuste para o Dark Mode Ativo */
+body.dark-theme #dark-mode-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--whatsapp-color);
+    color: var(--whatsapp-color);
+}
+
+/* Transição suave para todos os elementos quando mudar o tema */
+body, body *, header, footer, .secao, .box-comunidade {
+    transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease !important;
+}
+
+/* ================= RESPONSIVIDADE E BOTTOM NAV E DARK MODE ================= */
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 15px;
-        padding: 20px;
-        position: relative; /* Opcional: solta o header no mobile se ocupar muito espaço */
+    .dark-mode-container {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        margin-right: 0;
     }
-
-    .menu {
-        order: 3;
-        width: 100%;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    #link {
-        order: 2;
-        width: 100%;
-    }
-
-    .logo { order: 1; }
-
-    .secao { padding: 70px 20px; }
 }
 
-@media (max-width: 480px) {
-    .title h1 { font-size: 2.5rem; }
-    .frase-kant { font-size: 1.1rem; }
-}
-
+/* ================= RESPONSIVIDADE E BOTTOM NAV ================= */
 @media (max-width: 768px) {
+    .main-footer {
+        padding-bottom: 120px; 
+        text-align: center;
+    }
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+}
+
+/* RESPONSIVIDADE: Mostrar apenas no mobile */
+@media (min-width: 1025px) {
+    .bottom-nav {
+        display: none !important; /* Garante que não apareça no Desktop */
+    }
+}
+
+@media (max-width: 1024px) {
+    .bottom-nav {
+        display: flex; /* Aparece no mobile/tablet */
+    }
+    
+    /* Ajuste o botão Voltar ao Topo para não ficar em cima do menu */
     #backToTop {
-        bottom: 20px;
+        bottom: 80px; 
+    }
+}
+
+/* ================= RESPONSIVIDADE E BOTTOM NAV ================= */
+
+@media (max-width: 1024px) {
+    /* Esconde a barra lateral antiga se ela existir */
+    .navbar {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    /* 1. Ajuste do Header: Apenas a Logo centralizada */
+    header {
+        justify-content: center;
+        padding: 10px;
+    }
+
+    header .menu, 
+    header #link {
+        display: none !important; /* Remove o menu e o botão do topo */
+    }
+
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    /* 2. Ativação da Bottom Nav */
+    .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        border-top: 1px solid rgba(0,0,0,0.1);
+        justify-content: space-around;
+        align-items: center;
+        z-index: 2000;
+        box-shadow: 0 -2px 15px rgba(0,0,0,0.1);
+        padding-bottom: 5px;
+    }
+
+    .nav-item {
+        text-decoration: none;
+        color: var(--primary-color);
+        font-family: 'Pathway Gothic One', sans-serif;
+        font-size: 1rem;
+        font-weight: bold;
+    }
+
+    /* Estilo do ícone do WhatsApp que "salta" da barra */
+    .zap-highlight img {
+        width: 55px;
+        height: 55px;
+        margin-top: 40px; 
+        background: white;
+        border-radius: 50%;
+        padding: 5px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+
+    /* 3. Ajuste do Botão Voltar ao Topo para não sobrepor a barra */
+    #backToTop {
+        bottom: 85px; 
         right: 20px;
         width: 45px;
         height: 45px;
     }
+
+    /* 4. Ajustes de texto nas seções */
+    .secao { padding: 80px 20px 100px; }
+    .title h1 { font-size: 2.5rem; }
+    .frase-kant { font-size: 1.1rem; }
+}
+
+/* Animação de surgimento da barra */
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@media (max-width: 768px) {
+    .bottom-nav {
+        display: flex; /* */
+        animation: slideUp 0.6s ease-out; /* Nova animação */
+    }
+    
+    /* Feedback visual ao tocar nos itens */
+    .nav-item:active {
+        transform: scale(0.9);
+        transition: 0.1s;
+        color: var(--accent-color);
+    }
+}
+
+@keyframes pulseZap {
+    0% { transform: translateY(-30px) scale(1); }
+    50% { transform: translateY(-35px) scale(1.1); }
+    100% { transform: translateY(-30px) scale(1); }
+}
+
+@media (max-width: 768px) {
+    .zap-highlight img {
+        animation: pulseZap 2s infinite ease-in-out; /* Pulsação suave */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Faz os cards surgirem um pouco mais devagar no mobile */
+    .box-comunidade {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s ease-out;
+    }
+
+    /* Quando a seção pai ficar visível, os cards aparecem */
+    .secao.visible .box-comunidade {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Delay para o segundo e terceiro card (efeito cascata) */
+    .box-comunidade:nth-child(2) { transition-delay: 0.2s; }
+    .box-comunidade:nth-child(3) { transition-delay: 0.4s; }
 }

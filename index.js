@@ -47,3 +47,26 @@ backToTopButton.addEventListener("click", function() {
         behavior: "smooth"
     });
 });
+
+// 4. Lógica do Dark Mode
+const darkModeToggle = document.querySelector('#dark-mode-toggle');
+const body = document.body;
+
+// Verifica se o usuário já tinha uma preferência salva
+if (localStorage.getItem('theme') === 'dark') {
+    body.classList.add('dark-theme');
+    darkModeToggle.querySelector('.icon').textContent = '☀️';
+}
+
+darkModeToggle.addEventListener('click', () => {
+    body.classList.toggle('dark-theme');
+    
+    // Salva a preferência e troca o ícone
+    if (body.classList.contains('dark-theme')) {
+        localStorage.setItem('theme', 'dark');
+        darkModeToggle.querySelector('.icon').textContent = '☀️';
+    } else {
+        localStorage.setItem('theme', 'light');
+        darkModeToggle.querySelector('.icon').textContent = '🌙';
+    }
+});

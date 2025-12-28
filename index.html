@@ -12,8 +12,8 @@
 
 <body>
     <!-- LOGO + MENU -->
-    <header>
-        <img src="images/LogoPlantnoHeader.png" alt="Logo" class="logo">
+   <header>
+    <img src="images/LogoPlantnoHeader.png" alt="Logo" class="logo">
 
     <nav class="menu">
         <a href="#sobre">Sobre o Plantel ∑</a>
@@ -22,11 +22,32 @@
         <a href="#parceiros">Parceiros λ</a>
     </nav>
 
+    <div class="dark-mode-container">
+        <button id="dark-mode-toggle" title="Alternar tema">
+            <span class="icon">🌙</span>
+        </button>
+    </div>
+
     <a id="link" target="_blank" href="https://chat.whatsapp.com/KMwYVUctbqh1sPtlhcs3ip">
         <img src="images/LogoZap.png" id="logo-header-zap">
         <h3>Comunidades <br>no WhatsApp!</h3>
     </a>
 </header>
+
+<div class="bottom-nav">
+    <a href="#sobre" class="nav-item"><span>Sobre</span></a>
+    <a href="#comunidades" class="nav-item"><span>Comunidades</span></a>
+    
+    <a href="https://chat.whatsapp.com/KMwYVUctbqh1sPtlhcs3ip" target="_blank" class="nav-item zap-highlight">
+        <img src="images/LogoZap.png" alt="WhatsApp">
+    </a>
+    
+    <a href="#redes" class="nav-item"><span>Redes</span></a>
+    <a href="#parceiros" class="nav-item"><span>Parceiros</span></a>
+</div>
+
+<button id="backToTop" title="Voltar ao topo">↑</button>
+
     <!-- HERO COM BANDEIRA + FRASE -->
     <section class="hero">
         <div class="title">
@@ -128,7 +149,60 @@
 
 <button id="backToTop" title="Voltar ao topo">↑</button>
 
+ <!--Menu-->
+    <nav class="navbar" id="redes">
+      <ul>
+        <li>
+          <a
+            href="https://www.instagram.com/planteldeduvidas/">
+            <img src="images/insta.png" alt="Instagram">
+            <span>Instagram</span>
+          </a>
+        </li>
+        <li>
+          <a href="https://discord.com/invite/amvbHNjG?fbclid=PAb21jcAO-TCpleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA81NjcwNjczNDMzNTI0MjcAAacM4smsmkVtl2kVDomoJbP2Xovrjr949hNTwjPnmusyo5YlPAX4zQGSDL9DcQ_aem_oRJQmHJI6mbKJVOpEFvlzA">
+            <img src="images/discord.png" alt="X">
+            <span>Discord</span>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.youtube.com/@PlanteldeDuvidas">
+            <img src="images/youtube.png" alt="WhatsApp">
+            <span>Youtube</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
 <script src="index.js"></script>
+
+    <!-- FOOTER -->
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-brand">
+            <img src="images/LogoPlantnoHeader.png" alt="Logo Plantel" class="footer-logo">
+            <p>Transformando a educação através da colaboração.</p>
+        </div>
+        
+        <div class="footer-links">
+            <h4>Navegação</h4>
+            <a href="#sobre">Sobre</a>
+            <a href="#comunidades">Comunidades</a>
+            <a href="#redes">Redes Sociais</a>
+        </div>
+
+        <div class="footer-contact">
+            <h4>Contato</h4>
+            <p>contato@plantel.com.br</p>
+        </div>
+    </div>
+    
+    <div class="footer-bottom">
+        <p>© 2025 Plantel de Dúvidas. Todos os direitos reservados.</p>
+        <p class="dev-team">Desenvolvido pela Equipe de Desenvolvimento do Plantel de Dúvidas</p>
+    </div>
+</footer>
 </body>
 
 </html>
