@@ -28,3 +28,22 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(secao);
     });
 });
+
+// 3. Botão Voltar ao Topo
+const backToTopButton = document.querySelector("#backToTop");
+
+window.addEventListener("scroll", function() {
+    // Mostra o botão quando rolar mais de 400px para baixo
+    if (window.pageYOffset > 400) {
+        backToTopButton.classList.add("show");
+    } else {
+        backToTopButton.classList.remove("show");
+    }
+});
+
+backToTopButton.addEventListener("click", function() {
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+});
