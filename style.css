@@ -1092,13 +1092,14 @@ body.dark-theme .hamburger .bar:after {
 /* ================= SOCIAL FAB (mobile) ================= */
 .social-fab {
     position: fixed;
-    right: 20px;
+    right: 18px;
     bottom: 140px; /* acima do botão Voltar ao Topo por padrão */
-    z-index: 1200;
+    z-index: 1400;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 12px;
+    pointer-events: auto;
 }
 
 .social-toggle {
@@ -1114,6 +1115,7 @@ body.dark-theme .hamburger .bar:after {
     font-size: 1.2rem;
     cursor: pointer;
     box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
 
 .social-actions {
@@ -1140,6 +1142,7 @@ body.dark-theme .hamburger .bar:after {
     align-items: center;
     justify-content: center;
     box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    transition: transform 0.16s ease, box-shadow 0.16s ease, opacity 0.16s ease;
 }
 .social-btn img {
     width: 60%;
@@ -1147,9 +1150,15 @@ body.dark-theme .hamburger .bar:after {
     object-fit: contain;
     display: block;
 }
-.social-btn.instagram { background-color: #e1306b54; }
-.social-btn.discord { background-color: #5865f248; }
-.social-btn.youtube { background-color: #ff00003b; }
+.social-btn.instagram { background-color: rgba(225, 48, 107, 0.253); }
+.social-btn.discord { background-color: rgba(88, 101, 242, 0.253); }
+.social-btn.youtube { background-color: rgba(255, 0, 0, 0.274); }
+.social-btn.whatsapp { background-color: rgba(37, 211, 101, 0.26); }
+
+.social-btn:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 10px 24px rgba(0,0,0,0.18); }
+
+/* Quando o FAB estiver fechado, manter as ações ocultas com pequena translação */
+.social-fab:not(.open) .social-actions { pointer-events: none; }
 
 @media (max-width: 1024px) {
     /* garante que o FAB apareça apenas em telas menores */
