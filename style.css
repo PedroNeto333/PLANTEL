@@ -213,6 +213,7 @@ header {
     text-align: justify;
     max-width: 900px;
     margin: 0 auto 50px;
+    margin-top: 35px;
 }
 
 /* ================= CARDS DE COMUNIDADES ================= */
@@ -234,18 +235,16 @@ header {
     background: var(--white);
     border-radius: 20px;
     box-shadow: var(--shadow);
-    transition: var(--transition);
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between; /* empurra o conteúdo para ocupar todo o espaço */
     border: 1px solid rgba(0,0,0,0.05);
-    min-height: 320px; /* altura base consistente para todos os cards */
+    transition: var(--transition); 
 }
 
 .box-comunidade:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    transform: translateY(-10px); 
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15); /* A sombra aumenta ao subir */
 }
 
 /* Parte de cima do card (Verde) */
@@ -316,6 +315,9 @@ body.dark-theme .text-info-in-inside {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 60px; /* Espaço entre os blocos de números */
+    margin: 40px 0;
+    flex-wrap: wrap; /* Permite quebrar linha se não couber */
 }
 
 .numbers {
@@ -326,14 +328,35 @@ body.dark-theme .text-info-in-inside {
 }
 
 .numbers-text {
-    font-size: 3.5em;
+    font-size: 3.5rem; /* Usar rem é melhor para acessibilidade */
     font-weight: bold;
+    color: var(--primary-color);
+    font-family: 'Pathway Gothic One', sans-serif;
+    line-height: 1;
 }
 
 .numbers-text-label {
-    font-size: 1.5em;
-    padding-left: 20px;
+    font-size: 1.5rem;
     font-weight: bold;
+    text-transform: uppercase;
+    color: var(--text-dark);
+}
+
+/* Responsividade para Celulares */
+@media (max-width: 768px) {
+    .container-numbers {
+        gap: 30px; /* Reduz o espaço no mobile */
+        flex-direction: column; /* Coloca um número embaixo do outro */
+    }
+
+    .numbers-text {
+        font-size: 2.8rem; /* Diminui um pouco o tamanho da fonte */
+    }
+
+    .numbers-text-label {
+        font-size: 1.2rem;
+        padding-left: 0; /* Remove o padding que pode desalinhá-los no centro */
+    }
 }
 
 /* ================= BOTÃO VOLTAR AO TOPO ================= */
@@ -466,6 +489,15 @@ body.dark-theme .text-info-in-inside {
   top: 50%;
   transform: translateY(-50%) rotate(45deg);
   border-radius: 3px;
+}
+
+.navbar #redes ul li a {
+    transition: var(--transition);
+}
+
+.navbar #redes ul li a:hover {
+    opacity: 0.8;
+    transform: scale(1.05);
 }
 
 /* ================= BOTTOM NAVIGATION (MOBILE ONLY) ================= */
