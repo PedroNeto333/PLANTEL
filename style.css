@@ -53,6 +53,7 @@ header {
 .logo {
     width: 70px;
     height: 70px;
+    border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
 }
@@ -85,6 +86,10 @@ header {
     transition: var(--transition);
 }
 
+.menu a:hover::after {
+    width: 100%;
+}
+
 .menu a:hover {
     color: var(--primary-color);
 }
@@ -105,7 +110,7 @@ header {
     align-items: center;
     justify-content: center;
     min-width: 160px;
-    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+   box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
 }
 
 #link h3 {
@@ -121,6 +126,14 @@ header {
     background-color: #128C7E;
     transform: translateY(-2px) scale(1.03);
     box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.line {
+    background: linear-gradient(to right, transparent, var(--primary-color), transparent);
+    width: 250px;
+    height: 4px;
+    margin: 0 auto 40px;
+    border-radius: 10px;
 }
 
 /* ================= HERO SECTION (COM EFEITO PARALLAX) ================= */
@@ -203,46 +216,75 @@ header {
 }
 
 /* ================= CARDS DE COMUNIDADES ================= */
+/* Container que segura os cards */
 .container-comunidades {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    /* Isso cria colunas automáticas de no mínimo 300px */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
     width: 100%;
+    max-width: 1200px; /* limita largura para centralizar visualmente */
+    margin: 0 auto;
+    padding: 20px 0;
+    align-items: stretch; /* força colunas com mesma altura */
 }
 
+/* O Card em si */
 .box-comunidade {
     background: var(--white);
     border-radius: 20px;
     box-shadow: var(--shadow);
     transition: var(--transition);
-    border: 1px solid rgba(0,0,0,0.03);
     overflow: hidden;
     display: flex;
     flex-direction: column;
+    justify-content: space-between; /* empurra o conteúdo para ocupar todo o espaço */
+    border: 1px solid rgba(0,0,0,0.05);
+    min-height: 320px; /* altura base consistente para todos os cards */
 }
 
 .box-comunidade:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
 }
 
+/* Parte de cima do card (Verde) */
 .box-comunidade-top {
     background: var(--primary-color);
-    padding: 25px;
+    padding: 20px;
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
+    min-height: 88px;
 }
 
 .logo-comunidade {
-    width: 65px;
-    height: 65px;
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    border: 2px solid rgba(255,255,255,0.3);
+    border: 2px solid white;
+    object-fit: cover;
+}
+
+/* Estilo do Texto dentro do Card */
+.text-info-in-inside {
+    padding: 20px;
+    font-size: 1rem;
+    color: var(--text-dark); /* No dark mode, isso vai mudar via JS */
+}
+
+/* Dark Mode para os Cards */
+body.dark-theme .box-comunidade {
+    background: #1e1e1e;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-theme .text-info-in-inside {
+    color: #ffffff !important;
 }
 
 .text-info-in {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
     color: var(--white);
     font-family: 'Pathway Gothic One', sans-serif;
 }
@@ -251,7 +293,7 @@ header {
     font-size: 1.05rem;
     padding: 25px;
     color: #555;
-    flex-grow: 1;
+    flex: 1 1 auto; /* garante que o conteúdo principal cresça para preencher o card */
 }
 
 .box-comunidade-listas-efeito {
@@ -259,6 +301,39 @@ header {
     margin: 0 20px 20px;
     border-radius: 15px;
     border-left: 6px solid var(--accent-color);
+}
+
+/* Variante de efeito para outros boxes (compatibilidade) */
+.box-comunidade-efeito {
+    background: #f1f8e9; /* Verde bem clarinho */
+    margin: 0 20px 20px;
+    border-radius: 15px;
+    border-left: 6px solid var(--accent-color);
+}
+
+/* ================= NUMBERS (BLOCOS DE METRICS) ================= */
+.container-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.numbers {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.numbers-text {
+    font-size: 3.5em;
+    font-weight: bold;
+}
+
+.numbers-text-label {
+    font-size: 1.5em;
+    padding-left: 20px;
+    font-weight: bold;
 }
 
 /* ================= BOTÃO VOLTAR AO TOPO ================= */
@@ -791,4 +866,90 @@ body, body *, header, footer, .secao, .box-comunidade {
     /* Delay para o segundo e terceiro card (efeito cascata) */
     .box-comunidade:nth-child(2) { transition-delay: 0.2s; }
     .box-comunidade:nth-child(3) { transition-delay: 0.4s; }
+}
+
+/* ================= AJUSTES MOBILE: espaçamentos e fontes ================= */
+@media (max-width: 768px) {
+    /* Evita que o header fixo sobreponha o conteúdo */
+    main { margin-top: 88px; padding-bottom: 96px; }
+
+    /* Grid mais simples e espaçamento reduzido */
+    .container-comunidades {
+        gap: 18px;
+        padding: 8px 6px;
+        grid-template-columns: 1fr;
+    }
+
+    /* Cards ocupando menos espaço vertical e com padding interno adequado */
+    .box-comunidade {
+        min-height: auto;
+        padding: 12px;
+        border-radius: 14px;
+    }
+
+    .box-comunidade-top {
+        padding: 12px;
+        gap: 12px;
+        min-height: 64px;
+    }
+
+    .logo-comunidade {
+        width: 48px;
+        height: 48px;
+    }
+
+    .text-info-in {
+        font-size: 1.4rem;
+    }
+
+    .text-info-in-inside {
+        padding: 14px;
+        font-size: 0.98rem;
+    }
+
+    .container-numbers { gap: 12px; }
+}
+
+@media (max-width: 480px) {
+    main { margin-top: 76px; padding-bottom: 140px; }
+
+    .container-comunidades {
+        gap: 12px;
+        padding: 6px 6px;
+    }
+
+    .box-comunidade {
+        padding: 10px;
+    }
+
+    .box-comunidade-top {
+        padding: 10px;
+        min-height: 56px;
+    }
+
+    .logo {
+        width: 56px;
+        height: 56px;
+    }
+
+    .text-info-in {
+        font-size: 1.15rem;
+    }
+
+    .text-info-in-inside {
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+}
+
+/* ================= RESPONSIVIDADE ADICIONAL (do bloco recebido) ================= */
+@media (max-width: 992px) {
+    header { padding: 12px 3%; }
+    .menu { gap: 15px; }
+    .menu a { font-size: 1.1rem; }
+}
+
+@media (max-width: 480px) {
+    .title h1 { font-size: 2.5rem; }
+    .frase-kant { font-size: 1.1rem; }
 }

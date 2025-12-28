@@ -70,3 +70,36 @@ darkModeToggle.addEventListener('click', () => {
         darkModeToggle.querySelector('.icon').textContent = '🌙';
     }
 });
+
+const startCounting = () => {
+    const counters = document.querySelectorAll('.count-up');
+    
+    counters.forEach(counter => {
+        const target = +counter.getAttribute('data-target');
+        const updateCount = () => {
+            const count = +counter.innerText;
+            const increment = target / 100; // Ajusta a velocidade da contagem
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + increment);
+                setTimeout(updateCount, 20); // Velocidade da transição
+            } else {
+                counter.innerText = target;
+            }
+        };
+        updateCount();
+    });
+};
+
+// Isso faz a animação começar só quando você rolar a página até os números
+const observer = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting) {
+        startCounting();
+        observer.disconnect(); // Roda a animação apenas uma vez
+    }
+}, { threshold: 0.5 });
+
+const targetSection = document.querySelector('.container-numbers');
+if (targetSection) {
+    observer.observe(targetSection);
+}
