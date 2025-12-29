@@ -39,6 +39,7 @@ header {
     align-items: center;
     justify-content: space-between; /* Distribui: Logo | Menu | WhatsApp */
     background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba(0,0,0,0.05);
     z-index: 1000;
@@ -416,7 +417,7 @@ body.dark-theme .text-info-in-inside {
   padding: 0.75rem;
   /* Transparência ajustada (o final '5d' ou '80' define a opacidade) */
   background-color: rgba(238, 242, 245, 0.4); 
-  -webkit-backdrop-filter: blur(10px); /* Suporte para Safari */
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   display: flex;
   flex-direction: column;
@@ -509,6 +510,7 @@ body.dark-theme .text-info-in-inside {
     width: 100%;
     height: 65px;
     background: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(0,0,0,0.1);
     display: flex;
@@ -543,7 +545,8 @@ body.dark-theme .text-info-in-inside {
 /* ================= FOOTER MODERNIZADO ================= */
 .main-footer {
     background-color: rgba(255, 255, 255, 0.8); /* Transparência */
-    backdrop-filter: blur(10px); /* Blur consistente com o restante */
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     padding: 60px 5% 40px;
     border-top: 1px solid rgba(46, 125, 50, 0.1);
     margin-top: 50px;
@@ -693,7 +696,7 @@ body.dark-theme .bottom-nav {
 
 #dark-mode-toggle {
     background: rgba(255, 255, 255, 0.2); /* Fundo semi-transparente */
-    -webkit-backdrop-filter: blur(8px); /* Efeito de vidro */
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     border: 1px solid rgba(46, 125, 50, 0.3); /* Borda sutil verde */
     color: var(--primary-color);
@@ -829,6 +832,7 @@ body, body *, header, footer, .secao, .box-comunidade {
         width: 100%;
         height: 70px;
         background: rgba(255, 255, 255, 0.98);
+        -webkit-backdrop-filter: blur(10px);
         backdrop-filter: blur(10px);
         border-top: 1px solid rgba(0,0,0,0.1);
         justify-content: space-around;
@@ -936,7 +940,6 @@ body, body *, header, footer, .secao, .box-comunidade {
 
     /* Cards ocupando menos espaço vertical e com padding interno adequado */
     .box-comunidade {
-        min-height: auto;
         padding: 12px;
         border-radius: 14px;
     }
@@ -1056,6 +1059,7 @@ body, body *, header, footer, .secao, .box-comunidade {
     height: 0;
     overflow: hidden;
     background: rgba(255,255,255,0.98);
+    -webkit-backdrop-filter: blur(8px);
     backdrop-filter: blur(8px);
     z-index: 1050;
     opacity: 0;
